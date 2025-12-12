@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, redirect
 from pymongo.mongo_client import MongoClient
 from dotenv import load_dotenv
 import os
+from flask_cors import CORS
+
 
 username = os.getenv("MONGO_USER")
 password = os.getenv("MONGO_PASS")
@@ -12,6 +14,8 @@ db = client["data"]
 collection = db["users"]
 
 app = Flask(__name__)
+
+CORS(app) 
 
 
 @app.route("/submittodoitem", methods=["POST"])
